@@ -1,0 +1,64 @@
+﻿@model List<CasoEstudio2.Entities.CasaEnt>
+@{
+    ViewBag.Title = "ConsultarCasas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="display: flex; justify-content:center;">
+    <div class="col-6 grid-margin stretch-card" style="text-align:center; margin:20px 0 20px 0;">
+        <div class="card" style="padding:20px;">
+            <h4 class="card-title">Consulta</h4>
+
+            <table id="tableData" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>PrecioCasa</th>
+                        <th>UsuarioAlquiler</th>
+                        <th>FechaAlquiler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IdCasa</td>
+                            <td>@item.DescripcionCasa</td>
+                            <td>@item.PrecioCasa</td>
+                            <td>@item.UsuarioAlquiler</td>
+                            <td>@item.FechaAlquiler</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#tableData').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            },
+            "searching": false,
+            "paging": false,
+            "info": false,
+            "lengthChange": false,
+            "ordering": true,
+        });
+
+        //Función para mostrar primero los productos en estado Pendiente
+        table.order([4, 'asc']).draw();
+        table.on('draw', function () {
+            var filas = table.rows().nodes();
+            filas.sort(function (a, b) {
+                var estadoA = $(a).find('td:eq(4)').text().toLowerCase();
+                var estadoB = $(b).find('td:eq(4)').text().toLowerCase();
+                return estadoA.localeCompare(estadoB);
+            });
+            $(filas).detach().appendTo(table.table().body());
+        });
+    });
+</script>
