@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
 using System.Web;
 using System.Web.Mvc;
+using CasoEstudio2.Entities;
+
 
 namespace CasoEstudio2.Models
 {
@@ -15,13 +15,13 @@ namespace CasoEstudio2.Models
     {
         public string urlApi = ConfigurationManager.AppSettings["urlApi"];
 
-        public List<SelectListItem> ConsultarCasas()
+        public List<CasaEnt> ConsultarCasas()
         {
             using (var client = new HttpClient())
             {
-                string url = urlApi + "ConsultarCasas";
-                var resp = client.GetAsync(url).Result;
-                return resp.Content.ReadFromJsonAsync<List<SelectListItem>>().Result;
+                var url = urlApi + "ConsultarCasas";
+                var res = client.GetAsync(url).Result;
+                return res.Content.ReadFromJsonAsync<List<CasaEnt>>().Result;
             }
         }
 
