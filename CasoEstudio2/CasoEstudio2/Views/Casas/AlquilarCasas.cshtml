@@ -1,0 +1,47 @@
+﻿@model CasoEstudio2.Entities.CasaEnt
+
+@{
+    ViewBag.Title = "PerfilUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Información General</h4>
+
+            @if (ViewBag.MensajeUsuario != null)
+            {
+                <div class="alert alert-info" role="alert" style="text-align:center">
+                    @ViewBag.MensajeUsuario
+                </div>
+            }
+
+            @using (Html.BeginForm("AlquilarCasa", "Casas", FormMethod.Post, new { @class = "pt-3" }))
+            {
+
+                @Html.HiddenFor(m => m.IdCasa)
+        <div class="form-group">
+            <label for="Test">IdCasa</label>
+            @Html.DropDownListFor(m => m.DescripcionCasa, ViewBag.DescripcionCasas as List<SelectListItem>, new { @id = "DescripcionCasa", @class = "form-control form-control-lg", @type = "text", @placeholder = "DescripcionCasa" })
+
+        </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1"> Precio</label>
+                    @Html.TextBoxFor(m => m.PrecioCasa, new { @readonly = "@readonly", style = "background-color:#eeeeee", @class = "form-control form-control-lg", @type = "text", placeholder = "Precio" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Nombre</label>
+                    @Html.TextBoxFor(m => m.UsuarioAlquiler, new { @class = "form-control form-control-lg", @type = "text", placeholder = "Usuario" })
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Alquilar</button>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="~/Funciones/ConsultarCasaApi.js"></script>
