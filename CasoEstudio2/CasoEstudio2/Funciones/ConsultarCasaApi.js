@@ -4,7 +4,7 @@
 
     if (identificacion.length > 0) {
         $.ajax({
-            url: 'https://localhost:44307/ConsultarCasa/' + identificacion,
+            url: "https://localhost:44307/ConsultaCasa?q='" + identificacion + "'",
             type: "GET",
             success: function (data) {
                 $("#Precio").val(data.precioCasa);

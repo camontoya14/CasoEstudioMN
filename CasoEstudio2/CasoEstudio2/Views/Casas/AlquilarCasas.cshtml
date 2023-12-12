@@ -1,7 +1,7 @@
 ﻿@model CasoEstudio2.Entities.CasaEnt
 
 @{
-    ViewBag.Title = "PerfilUsuario";
+    ViewBag.Title = "AlquilarCasas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,7 +17,7 @@
                 </div>
             }
 
-            @using (Html.BeginForm("AlquilarCasa", "Casas", FormMethod.Post, new { @class = "pt-3" }))
+            @using (Html.BeginForm("AlquilarCasas", "Casas", FormMethod.Post, new { @class = "pt-3" }))
             {
 
                 @Html.HiddenFor(m => m.IdCasa)
