@@ -20,16 +20,16 @@
             @using (Html.BeginForm("AlquilarCasas", "Casas", FormMethod.Post, new { @class = "pt-3" }))
             {
 
-                @Html.HiddenFor(m => m.IdCasa)
-        <div class="form-group">
-            <label for="Test">IdCasa</label>
-            @Html.DropDownListFor(m => m.DescripcionCasa, ViewBag.DescripcionCasas as List<SelectListItem>, new { @id = "DescripcionCasa", @class = "form-control form-control-lg", @type = "text", @placeholder = "DescripcionCasa" })
+                @Html.HiddenFor(m => m.IdCasa, new { id = "hdnIdCasa" })
+                <div class="form-group">
+                    <label for="Test">IdCasa</label>
+                    @Html.DropDownListFor(m => m.DescripcionCasa, ViewBag.DescripcionCasas as List<SelectListItem>, new { @id = "descripcionCasa", @class = "form-control form-control-lg"})
 
-        </div>
+                </div>
 
                 <div class="form-group">
                     <label for="exampleInputName1"> Precio</label>
-                    @Html.TextBoxFor(m => m.PrecioCasa, new { @readonly = "@readonly", style = "background-color:#eeeeee", @class = "form-control form-control-lg", @type = "text", placeholder = "Precio" })
+                    @Html.TextBoxFor(m => m.PrecioCasa, new { @readonly = "@readonly", style = "background-color:#eeeeee", @id = "precio", @class = "form-control form-control-lg", @type = "text", placeholder = "Precio" })
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3">Nombre</label>
@@ -43,5 +43,28 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#descripcionCasa').change(function () {
+            var selectedValue = $(this).val();
 
-<script src="~/Funciones/ConsultarCasaApi.js"></script>
+            var selectedValue = $(this).val();
+            var values = selectedValue.split('_');
+            var idCasa = values[0];
+
+            $('#hdnIdCasa').val(idCasa);
+            console.log('Valor de idCasa:', idCasa);
+
+            actualizarSaldo();
+        });
+
+        function actualizarSaldo() {
+            var selectedValue = $('#descripcionCasa').val();
+            var values = selectedValue.split('_');
+            var precio = values[1];
+            $('#precio').val(precio);
+        }
+
+        actualizarSaldo();
+    });
+</script>

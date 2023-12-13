@@ -27,40 +27,41 @@
                         @foreach (var item in Model)
                         {
 
-                             
-                            if (((double)item.PrecioCasa) >= 115000 && ((double)item.PrecioCasa) <= 180000) { 
-                              <tr>
-                                  <td>@item.DescripcionCasa</td>
-                                  <td>@item.PrecioCasa</td>
-                                  @if (item.UsuarioAlquiler.ToString() == "Null")
-                                  {
-                                      <td>N/A</td>
-                                  }
-                                  else
-                                  {
-                                      <td>@item.UsuarioAlquiler</td>
-                                  }
-                              
-                                  @if (item.UsuarioAlquiler != null)
-                                  {
-                                      <td>Disponible</td>
-                                  }
-                                  else
-                                  {
-                                      <td>Reservada</td>
-                                  }
-                              
-                                  <td>@item.FechaAlquiler</td>
-                              
-                                  @if (item.FechaAlquiler.ToString() == "Null")
-                                  {
-                                      <td>N/A</td>
-                                  }
-                                  else
-                                  {
-                                      <td>@item.UsuarioAlquiler</td>
-                                  }
-                              </tr>
+
+                            if (((double)item.PrecioCasa) >= 115000 && ((double)item.PrecioCasa) <= 180000)
+                            {
+                                <tr>
+                                    <td>@item.DescripcionCasa</td>
+                                    <td>@item.PrecioCasa</td>
+                                    @if (item.UsuarioAlquiler.ToString() == "Null")
+                                    {
+                                        <td>N/A</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.UsuarioAlquiler</td>
+                                    }
+
+                                    @if (item.UsuarioAlquiler.ToString() == "Null")
+                                    {
+                                        <td>Disponible</td>
+                                    }
+                                    else 
+                                    {
+                                        <td>Reservada</td>
+                                    }
+
+
+
+                                    @if (item.FechaAlquiler.ToString() == "Null")
+                                    {
+                                        <td>N/A</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.FechaAlquiler</td>
+                                    }
+                                </tr>
                             }
                         }
                     </tbody>

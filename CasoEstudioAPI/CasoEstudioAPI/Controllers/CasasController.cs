@@ -56,7 +56,7 @@ namespace CasoEstudioAPI.Controllers
                     var respuesta = new List<System.Web.Mvc.SelectListItem>();
                     foreach (var item in datos)
                     {
-                        respuesta.Add(new System.Web.Mvc.SelectListItem { Value = item.IdCasa.ToString(), Text = item.DescripcionCasa });
+                        respuesta.Add(new System.Web.Mvc.SelectListItem { Value = $"{item.IdCasa}_{item.PrecioCasa}", Text = item.DescripcionCasa });
                     }
 
                     return respuesta;
@@ -82,7 +82,6 @@ namespace CasoEstudioAPI.Controllers
 
                     if (datos != null)
                     {
-                        datos.DescripcionCasa = entidad.DescripcionCasa;
                         datos.PrecioCasa = entidad.PrecioCasa;
                         datos.UsuarioAlquiler = entidad.UsuarioAlquiler;
                         datos.FechaAlquiler = entidad.FechaAlquiler;

@@ -28,7 +28,7 @@ namespace CasoEstudio2.Models
                     {
                         if (casa.UsuarioAlquiler == null)
                         {
-                            casa.UsuarioAlquiler = " ";
+                            casa.UsuarioAlquiler = "Null";
                         }
 
                         else if (casa.FechaAlquiler == null)
